@@ -1,6 +1,6 @@
 $(function(){
-  getCities(); 
-  getTipo(); 
+  getCities(); //Obtener los valores de las ciudades e incluirlos en el campo select #selectCiudad
+  getTipo(); //Obtener los valores de las ciudades e incluirlos en el campo select #selectTipo
   hideLoader();
 })
 
@@ -9,17 +9,17 @@ function hideLoader(){
 }
 
 $('#mostrarTodos').on('click', function(){
-  $('.progress').show()
-  buscarItem(false); 
+  $('.progress').show() //Mostrar la barra de progreso mientras se genera la búsqyeda
+  buscarItem(false); //Pasar a la funcion buscarItem el parametro false para indicar que no se utilizará filtro
 })
 
 $('#formulario').on('submit', function(event){
-  event.preventDefault(); 
-  $('.progress').show() 
-  buscarItem(true); 
+  event.preventDefault(); //Prevenir que se ejecute la acción por defecto al hacer submit del formulario
+  $('.progress').show() //Mostrar la barra de progreso mientras se genera la búsqyeda
+  buscarItem(true); //Pasar a la funcion buscarItem el parametro false para indicar que se utilizará filtro
 })
 
-//enar los input select con los valores correspondientes
+/*Lenar los input select con los valores correspondientes*/
 function getCities(){ //Agregar las ciudades al input selectCiudad
   $.ajax({
     url:'./cities.php', //Realizar consulta al archivo cities.php
@@ -69,7 +69,7 @@ function buscarItem(filter){
   }
   var filtro = getFiltros(filter)
   $.ajax({
-    url:'../buscador.php', //Realizar consulta al archivo buscador.php
+    url:'./buscador.php', //Realizar consulta al archivo buscador.php
     type: 'GET', //Utilizar el metodo GET para obtener la infomación
     data:{filtro}, //Enviar la información de los filtros.
     success:function(items, textStatus, errorThrown ){ //Acciones a realizar si la ejecución es exitosa
